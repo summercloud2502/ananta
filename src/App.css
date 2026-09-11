@@ -1,0 +1,391 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html,
+body,
+#root {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+body {
+  background: #000;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.app {
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+}
+
+/* =====================================================
+   VNG GAMES
+===================================================== */
+
+.vng-screen {
+  width: 100%;
+  height: 100%;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  background: #fff;
+
+  animation: fadeIn 0.4s ease;
+}
+
+.vng-logo {
+  width: 200px;
+  max-width: 40vw;
+
+  object-fit: contain;
+}
+
+
+/* =====================================================
+   PLAY GAME SCREEN
+===================================================== */
+
+.play-screen {
+  position: relative;
+
+  width: 100%;
+  height: 100%;
+
+  background: #000;
+
+  animation: fadeIn 0.5s ease;
+}
+
+.game-background {
+  position: absolute;
+
+  width: 100%;
+  height: 100%;
+
+  object-fit: cover;
+
+  left: 0;
+  top: 0;
+}
+
+
+/* =====================================================
+   LOADING
+   Giữ chữ + MB + % nhưng bỏ toàn bộ khung màu
+===================================================== */
+
+.loading-container {
+  position: absolute;
+
+  left: 50%;
+  bottom: 2px;
+
+  transform: translateX(-50%);
+
+  width: 70%;
+  max-width: 900px;
+
+  z-index: 10;
+
+  /* BỎ KHUNG */
+  background: transparent;
+  border: none;
+  box-shadow: none;
+
+  /* Không padding tạo khung */
+  padding: 0;
+
+  color: #fff;
+}
+
+
+/* Dòng Đang tải + MB */
+
+.loading-info {
+  display: flex;
+
+  justify-content: space-between;
+  align-items: center;
+
+  margin-bottom: 4px;
+
+  padding: 0;
+
+  font-size: 13px;
+
+  color: #fff;
+
+  text-shadow:
+    0 1px 3px rgba(0, 0, 0, 0.9);
+}
+
+
+/* Thanh loading */
+
+.loading-bar {
+  width: 100%;
+
+  height: 4px;
+
+  background: rgba(255, 255, 255, 0.35);
+
+  overflow: hidden;
+
+  border-radius: 0;
+
+  box-shadow:
+    0 1px 4px rgba(0, 0, 0, 0.8);
+}
+
+
+/* Phần đang chạy */
+
+.loading-progress {
+  height: 100%;
+
+  width: 0%;
+
+  background: #fff;
+
+  border-radius: 0;
+
+  box-shadow:
+    0 0 6px rgba(255, 255, 255, 0.8);
+
+  transition: width 0.03s linear;
+}
+
+
+/* Phần % */
+
+.loading-percent {
+  margin-top: 4px;
+
+  padding: 0;
+
+  text-align: right;
+
+  font-size: 11px;
+
+  color: #fff;
+
+  text-shadow:
+    0 1px 3px rgba(0, 0, 0, 0.9);
+}
+
+
+/* =====================================================
+   FINAL SCREEN
+===================================================== */
+
+.final-screen {
+  position: relative;
+
+  width: 100%;
+  height: 100%;
+
+  background: #000;
+
+  animation: fadeIn 0.8s ease;
+}
+
+.final-image {
+  width: 100%;
+  height: 100%;
+
+  object-fit: cover;
+}
+
+
+/* =====================================================
+   ANIMATION
+===================================================== */
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+/* =====================================================
+   MODAL THÔNG BÁO BẢN CẬP NHẬT
+===================================================== */
+
+.update-modal {
+  position: absolute;
+
+  top: 50%;
+  left: 50%;
+
+  transform: translate(-50%, -50%);
+
+  width: 360px;
+  max-width: 80vw;
+
+  padding: 24px 26px 22px;
+
+  background: rgba(20, 20, 24, 0.94);
+
+  border: 1px solid rgba(255, 255, 255, 0.18);
+
+  border-radius: 8px;
+
+  box-shadow:
+    0 10px 40px rgba(0, 0, 0, 0.65),
+    0 0 20px rgba(255, 255, 255, 0.05);
+
+  z-index: 50;
+
+  text-align: center;
+
+  color: #fff;
+
+  animation: modalFadeIn 0.35s ease;
+}
+
+
+/* TIÊU ĐỀ */
+
+.update-modal-title {
+  font-size: 22px;
+
+  font-weight: 600;
+
+  margin-bottom: 12px;
+
+  color: #fff;
+
+  text-shadow:
+    0 2px 6px rgba(0, 0, 0, 0.7);
+}
+
+
+/* DUNG LƯỢNG */
+
+.update-modal-size {
+  font-size: 17px;
+
+  font-weight: 500;
+
+  margin-bottom: 8px;
+
+  color: #ddd;
+}
+
+
+/* NỘI DUNG */
+
+.update-modal-message {
+  font-size: 14px;
+
+  color: #aaa;
+
+  line-height: 1.5;
+
+  margin-bottom: 22px;
+}
+
+
+/* 2 NÚT */
+
+.update-modal-buttons {
+  display: flex;
+
+  justify-content: center;
+
+  align-items: center;
+
+  gap: 14px;
+}
+
+
+/* BUTTON CHUNG */
+
+.update-btn {
+  width: 48px;
+  height: 38px;
+
+  border: none;
+
+  border-radius: 5px;
+
+  font-size: 22px;
+
+  font-weight: 500;
+
+  color: #fff;
+
+  cursor: pointer;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  transition:
+    transform 0.15s ease,
+    opacity 0.15s ease;
+}
+
+
+/* NÚT X */
+
+.update-btn-x {
+  background: rgba(255, 255, 255, 0.15);
+}
+
+
+/* NÚT V */
+
+.update-btn-check {
+  background: rgba(255, 255, 255, 0.15);
+}
+
+
+/* HIỆU ỨNG KHI RÊ CHUỘT */
+
+.update-btn:hover {
+  opacity: 0.8;
+
+  transform: scale(1.05);
+}
+
+
+/* KHI BẤM */
+
+.update-btn:active {
+  transform: scale(0.92);
+}
+
+
+/* ANIMATION */
+
+@keyframes modalFadeIn {
+  from {
+    opacity: 0;
+
+    transform:
+      translate(-50%, -50%)
+      scale(0.92);
+  }
+
+  to {
+    opacity: 1;
+
+    transform:
+      translate(-50%, -50%)
+      scale(1);
+  }
+}
