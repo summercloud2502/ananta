@@ -5,14 +5,75 @@ function App() {
   const [screen, setScreen] = useState("vng");
   const [progress, setProgress] = useState(0);
 
-  const isMobile = /Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
+  // =========================
+  // KIỂM TRA THIẾT BỊ MOBILE
+  // =========================
+  const isMobile = /Android|iPhone|iPad|iPod/i.test(
+    navigator.userAgent
+  );
+
+  const [isLandscape, setIsLandscape] = useState(
+    window.innerWidth > window.innerHeight
+  );
 
   const TOTAL_MB = 1943.48;
 
+  // =====================================================
+  // KIỂM TRA XOAY MÀN HÌNH
+  // =====================================================
+
   useEffect(() => {
-    // =========================
-    // MÀN VNG GAMES: 2 GIÂY
-    // =========================
+    if (!isMobile) return;
+
+    const checkOrientation = () => {
+      setIsLandscape(
+        window.innerWidth > window.innerHeight
+      );
+    };
+
+    checkOrientation();
+
+    window.addEventListener(
+      "resize",
+      checkOrientation
+    );
+
+    window.addEventListener(
+      "orientationchange",
+      checkOrientation
+    );
+
+    // Thử khóa màn hình ngang
+    try {
+      if (screen.orientation?.lock) {
+        screen.orientation
+          .lock("landscape")
+          .catch(() => {});
+      }
+    } catch (error) {
+      console.log(
+        "Thiết bị không hỗ trợ khóa màn hình ngang"
+      );
+    }
+
+    return () => {
+      window.removeEventListener(
+        "resize",
+        checkOrientation
+      );
+
+      window.removeEventListener(
+        "orientationchange",
+        checkOrientation
+      );
+    };
+  }, [isMobile]);
+
+  // =====================================================
+  // MÀN VNG GAMES: 2 GIÂY
+  // =====================================================
+
+  useEffect(() => {
     const vngTimer = setTimeout(() => {
       setScreen("play");
     }, 2000);
@@ -20,12 +81,13 @@ function App() {
     return () => clearTimeout(vngTimer);
   }, []);
 
+  // =====================================================
+  // LOADING: 4.5 GIÂY
+  // =====================================================
+
   useEffect(() => {
     if (screen !== "play") return;
 
-    // =========================
-    // LOADING: 4.5 GIÂY
-    // =========================
     const duration = 4500;
     const startTime = Date.now();
 
@@ -39,7 +101,7 @@ function App() {
 
       setProgress(percent);
 
-      // Đủ 100% -> màn cuối
+      // Đủ 100%
       if (percent >= 100) {
         clearInterval(timer);
 
@@ -52,9 +114,43 @@ function App() {
     return () => clearInterval(timer);
   }, [screen]);
 
+  // =====================================================
+  // TÍNH DUNG LƯỢNG MB
+  // =====================================================
+
   const loadedMB = Math.floor(
     (progress / 100) * TOTAL_MB
   );
+
+  // =====================================================
+  // ĐIỆN THOẠI ĐANG DỌC
+  // =====================================================
+
+  if (isMobile && !isLandscape) {
+    return (
+      <div className="rotate-screen">
+        <div className="rotate-content">
+
+          <div className="rotate-phone">
+            <div className="phone-screen"></div>
+          </div>
+
+          <div className="rotate-title">
+            Vui lòng xoay ngang điện thoại
+          </div>
+
+          <div className="rotate-message">
+            Xoay ngang màn hình để tiếp tục
+          </div>
+
+        </div>
+      </div>
+    );
+  }
+
+  // =====================================================
+  // GIAO DIỆN CHÍNH
+  // =====================================================
 
   return (
     <div className="app">
@@ -62,19 +158,23 @@ function App() {
       {/* =========================================
           1. VNG GAMES
       ========================================= */}
+
       {screen === "vng" && (
         <div className="vng-screen">
+
           <img
             src="/vnggames_logo.jpg"
             alt="VNG Games"
             className="vng-logo"
           />
+
         </div>
       )}
 
       {/* =========================================
           2. PLAY GAME + LOADING
       ========================================= */}
+
       {screen === "play" && (
         <div className="play-screen">
 
@@ -84,10 +184,12 @@ function App() {
             className="game-background"
           />
 
-          {/* Loading */}
+          {/* LOADING */}
+
           <div className="loading-container">
 
             <div className="loading-info">
+
               <span>
                 Đang tải...
               </span>
@@ -96,15 +198,18 @@ function App() {
                 {loadedMB.toLocaleString("en-US")} MB /{" "}
                 {TOTAL_MB.toLocaleString("en-US")} MB
               </span>
+
             </div>
 
             <div className="loading-bar">
+
               <div
                 className="loading-progress"
                 style={{
                   width: `${progress}%`,
                 }}
               />
+
             </div>
 
             <div className="loading-percent">
@@ -112,12 +217,14 @@ function App() {
             </div>
 
           </div>
+
         </div>
       )}
 
       {/* =========================================
           3. MÀN HÌNH CUỐI
       ========================================= */}
+
       {screen === "final" && (
         <div className="final-screen">
 
@@ -130,6 +237,7 @@ function App() {
           {/* =====================================
               MODAL THÔNG BÁO
           ===================================== */}
+
           <div className="update-modal">
 
             <div className="update-modal-title">
@@ -145,6 +253,7 @@ function App() {
             </div>
 
             {/* 2 NÚT X + V */}
+
             <div className="update-modal-buttons">
 
               <button

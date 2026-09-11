@@ -23,6 +23,7 @@ body {
   overflow: hidden;
 }
 
+
 /* =====================================================
    VNG GAMES
 ===================================================== */
@@ -69,16 +70,15 @@ body {
   width: 100%;
   height: 100%;
 
-  object-fit: cover;
-
   left: 0;
   top: 0;
+
+  object-fit: cover;
 }
 
 
 /* =====================================================
    LOADING
-   Giữ chữ + MB + % nhưng bỏ toàn bộ khung màu
 ===================================================== */
 
 .loading-container {
@@ -94,19 +94,19 @@ body {
 
   z-index: 10;
 
-  /* BỎ KHUNG */
   background: transparent;
   border: none;
   box-shadow: none;
 
-  /* Không padding tạo khung */
   padding: 0;
 
   color: #fff;
 }
 
 
-/* Dòng Đang tải + MB */
+/* =====================================================
+   LOADING INFO
+===================================================== */
 
 .loading-info {
   display: flex;
@@ -127,7 +127,9 @@ body {
 }
 
 
-/* Thanh loading */
+/* =====================================================
+   LOADING BAR
+===================================================== */
 
 .loading-bar {
   width: 100%;
@@ -145,7 +147,9 @@ body {
 }
 
 
-/* Phần đang chạy */
+/* =====================================================
+   LOADING PROGRESS
+===================================================== */
 
 .loading-progress {
   height: 100%;
@@ -163,7 +167,9 @@ body {
 }
 
 
-/* Phần % */
+/* =====================================================
+   LOADING %
+===================================================== */
 
 .loading-percent {
   margin-top: 4px;
@@ -218,8 +224,9 @@ body {
   }
 }
 
+
 /* =====================================================
-   MODAL THÔNG BÁO BẢN CẬP NHẬT
+   MODAL THÔNG BÁO
 ===================================================== */
 
 .update-modal {
@@ -255,7 +262,9 @@ body {
 }
 
 
-/* TIÊU ĐỀ */
+/* =====================================================
+   MODAL TITLE
+===================================================== */
 
 .update-modal-title {
   font-size: 22px;
@@ -271,7 +280,9 @@ body {
 }
 
 
-/* DUNG LƯỢNG */
+/* =====================================================
+   MODAL SIZE
+===================================================== */
 
 .update-modal-size {
   font-size: 17px;
@@ -284,7 +295,9 @@ body {
 }
 
 
-/* NỘI DUNG */
+/* =====================================================
+   MODAL MESSAGE
+===================================================== */
 
 .update-modal-message {
   font-size: 14px;
@@ -297,7 +310,9 @@ body {
 }
 
 
-/* 2 NÚT */
+/* =====================================================
+   MODAL BUTTONS
+===================================================== */
 
 .update-modal-buttons {
   display: flex;
@@ -310,7 +325,9 @@ body {
 }
 
 
-/* BUTTON CHUNG */
+/* =====================================================
+   BUTTON
+===================================================== */
 
 .update-btn {
   width: 48px;
@@ -331,7 +348,6 @@ body {
   display: flex;
 
   align-items: center;
-
   justify-content: center;
 
   transition:
@@ -340,21 +356,27 @@ body {
 }
 
 
-/* NÚT X */
+/* =====================================================
+   X BUTTON
+===================================================== */
 
 .update-btn-x {
   background: rgba(255, 255, 255, 0.15);
 }
 
 
-/* NÚT V */
+/* =====================================================
+   CHECK BUTTON
+===================================================== */
 
 .update-btn-check {
   background: rgba(255, 255, 255, 0.15);
 }
 
 
-/* HIỆU ỨNG KHI RÊ CHUỘT */
+/* =====================================================
+   BUTTON HOVER
+===================================================== */
 
 .update-btn:hover {
   opacity: 0.8;
@@ -363,14 +385,18 @@ body {
 }
 
 
-/* KHI BẤM */
+/* =====================================================
+   BUTTON ACTIVE
+===================================================== */
 
 .update-btn:active {
   transform: scale(0.92);
 }
 
 
-/* ANIMATION */
+/* =====================================================
+   MODAL ANIMATION
+===================================================== */
 
 @keyframes modalFadeIn {
   from {
@@ -390,36 +416,170 @@ body {
   }
 }
 
-/* =========================
-   MOBILE - MÀN HÌNH NGANG
-========================= */
+
+/* =====================================================
+   MOBILE
+===================================================== */
 
 @media (max-width: 768px) {
-  .screen {
-    width: 100vw;
-    height: 100vh;
-  }
-
-  .background {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-  }
 
   .loading-container {
-    width: 85vw;
-    bottom: 30px;
+    width: 85%;
+
+    bottom: 8px;
   }
 
   .loading-info {
-    font-size: 12px;
+    font-size: 11px;
   }
 
   .loading-bar {
-    height: 8px;
+    height: 4px;
   }
 
   .loading-percent {
-    font-size: 12px;
+    font-size: 10px;
   }
+
+  .update-modal {
+    width: 320px;
+
+    max-width: 80vw;
+
+    padding: 20px;
+  }
+
+  .update-modal-title {
+    font-size: 18px;
+  }
+
+  .update-modal-size {
+    font-size: 15px;
+  }
+
+  .update-modal-message {
+    font-size: 13px;
+  }
+
+}
+
+
+/* =====================================================
+   MÀN HÌNH YÊU CẦU XOAY NGANG
+===================================================== */
+
+.rotate-screen {
+  position: fixed;
+
+  inset: 0;
+
+  width: 100vw;
+  height: 100vh;
+
+  background: #000;
+
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  z-index: 99999;
+
+  color: #fff;
+
+  text-align: center;
+}
+
+.rotate-content {
+  display: flex;
+
+  flex-direction: column;
+
+  align-items: center;
+  justify-content: center;
+
+  padding: 30px;
+}
+
+
+/* =====================================================
+   ICON ĐIỆN THOẠI
+===================================================== */
+
+.rotate-phone {
+  position: relative;
+
+  width: 42px;
+  height: 70px;
+
+  border: 3px solid #fff;
+
+  border-radius: 8px;
+
+  margin-bottom: 25px;
+
+  animation: phoneRotate 1.8s ease-in-out infinite;
+}
+
+.phone-screen {
+  position: absolute;
+
+  left: 5px;
+  right: 5px;
+
+  top: 8px;
+  bottom: 8px;
+
+  border-radius: 3px;
+
+  background: rgba(255, 255, 255, 0.12);
+}
+
+
+/* =====================================================
+   ROTATE TITLE
+===================================================== */
+
+.rotate-title {
+  font-size: 22px;
+
+  font-weight: 600;
+
+  margin-bottom: 12px;
+}
+
+
+/* =====================================================
+   ROTATE MESSAGE
+===================================================== */
+
+.rotate-message {
+  font-size: 15px;
+
+  color: rgba(255, 255, 255, 0.65);
+}
+
+
+/* =====================================================
+   ROTATE ANIMATION
+===================================================== */
+
+@keyframes phoneRotate {
+
+  0% {
+    transform: rotate(0deg);
+  }
+
+  40% {
+    transform: rotate(0deg);
+  }
+
+  70% {
+    transform: rotate(90deg);
+  }
+
+  100% {
+    transform: rotate(90deg);
+  }
+
 }
