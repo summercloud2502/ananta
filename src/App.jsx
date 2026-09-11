@@ -5,6 +5,8 @@ function App() {
   const [screen, setScreen] = useState("vng");
   const [progress, setProgress] = useState(0);
 
+  const isMobile = /Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
+
   const TOTAL_MB = 1943.48;
 
   useEffect(() => {
